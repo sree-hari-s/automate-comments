@@ -22,4 +22,5 @@ jobs:
     - name: Run Python Script
       run: |
         export GITHUB_ACCESS_TOKEN=${{ secrets.GITHUB_TOKEN }}
+        pip install requirements.txt
         python main.py ${{ github.event.issue.number }}

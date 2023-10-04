@@ -11,16 +11,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.10' 
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
 
-    - name: Run Python Script
-      run: |
-        export GITHUB_ACCESS_TOKEN=${{ secrets.GITHUB_TOKEN }}
-        pip install requirements.txt
-        python main.py ${{ github.event.issue.number }}
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+      
+      - name: Run Python Script
+        run: |
+          export GITHUB_ACCESS_TOKEN=${{ secrets.GITHUB_TOKEN }}
+          python main.py ${{ github.event.issue.number }}
